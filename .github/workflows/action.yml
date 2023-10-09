@@ -1,0 +1,11 @@
+name: Auto Assign
+run-name: Auto assigning people to ${{ github.actor }}'s Pull Request. 🚀
+on:
+    pull_request:
+        branches:
+            - main
+jobs:
+    Add-Reviewers:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: kentaro-m/auto-assign-action@v1.2.5
