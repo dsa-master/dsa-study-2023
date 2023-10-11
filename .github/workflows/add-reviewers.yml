@@ -1,13 +1,11 @@
 name: Add Reviewers
-run-name: Adding reviewers to ${{ github.actor }}'s Pull Request. 🚀
+run-name: >-
+    "${{ github.actor }}"가 제출한 과제에 리뷰어를 등록하고 있습니다. 🚀
 on:
     pull_request_target:
         types:
             - opened
-            - edited
-            - reopened
             - ready_for_review
-            - unlocked
 jobs:
     Add-Reviewers:
         runs-on: ubuntu-latest
@@ -15,8 +13,8 @@ jobs:
             contents: read
             pull-requests: write
         steps:
-            - uses: kentaro-m/auto-assign-action@v1.2.5
-              name: Add reviewers to PR
+            - name: Add reviewers to PR
+              uses: kentaro-m/auto-assign-action@v1.2.5
               with:
                   configuration-path: ".github/auto_assign.yml"
                   repo-token: "${{ secrets.GITHUB_TOKEN }}"
