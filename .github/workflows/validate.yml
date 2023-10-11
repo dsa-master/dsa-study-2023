@@ -1,0 +1,38 @@
+name: Validate Pull Request
+run-name: >-
+    "${{ github.actor }}"가 제출한 과제를 검토하고 있습니다. 🚀
+on:
+    pull_request:
+        types:
+            - opened
+            - edited
+            - reopened
+            - ready_for_review
+            - unlocked
+            - synchronize
+jobs:
+    Validate-Pull-Request:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: 1개의 파일만 수정되었는지 검사
+              uses: JJ/github-pr-contains-action@releases/v11
+              with:
+                  github-token: "${{ secrets.GITHUB_TOKEN }}"
+                  filesChanged: 1
+            - name: 제목 형식이 올바른지 검사
+              uses: deepakputhraya/action-pr-title@master
+              with:
+                  regex: '^\[\d{2}주차 [가-힣]+\] .+'
+                  github_token: "${{ secrets.GITHUB_TOKEN }}"
+            - name: 파일의 경로가 올바른지 검사
+              uses: brettcannon/check-for-changed-files@v1
+              with:
+                  file-pattern: '/[0-9][0-9]주차/[가-힣]+/*'
+                  token: "${{ secrets.GITHUB_TOKEN }}"
+                  failure-message: >-
+                    제출한 파일의 경로가 올바르지 않습니다.
+                    파일의 이 올바른 디렉터리에 있는지 확인해주세요.
+
+                    파일명: ${file-pattern}
