@@ -1,5 +1,5 @@
-name: Auto Assign
-run-name: Auto assigning people to ${{ github.actor }}'s Pull Request. 🚀
+name: Add Reviewers
+run-name: Adding reviewers to ${{ github.actor }}'s Pull Request. 🚀
 on:
     pull_request_target:
         types:
