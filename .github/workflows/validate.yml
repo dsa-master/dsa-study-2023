@@ -29,10 +29,9 @@ jobs:
             - name: 파일의 경로가 올바른지 검사
               uses: brettcannon/check-for-changed-files@v1
               with:
-                  file-pattern: '/[0-9][0-9]주차/[가-힣]+/*'
+                  # TODO: Replace hard-coded patterns
+                  file-pattern: /[0-9][0-9]주차/@(김동주|이윤호|이은지|박민수|손성빈|박상우|정지원|조예빈)/*.@(c|cpp|py|java)
                   token: "${{ secrets.GITHUB_TOKEN }}"
                   failure-message: >-
                     제출한 파일의 경로가 올바르지 않습니다.
                     파일의 이 올바른 디렉터리에 있는지 확인해주세요.
-
-                    파일명: ${file-pattern}
