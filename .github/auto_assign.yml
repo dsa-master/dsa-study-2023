@@ -1,0 +1,33 @@
+# Set to true to add reviewers to pull requests
+addReviewers: true
+
+# Set to true to add assignees to pull requests
+addAssignees: false
+
+# A list of reviewers to be added to pull requests (GitHub user name)
+reviewers:
+  - hepheir     # 김동주
+  - leeyh1011   # 이윤호
+  - Eunji1217   # 이은지
+  - pmsu2007    # 박민수
+  - SonSBiN     # 손성빈
+  - pswoo0323   # 박상우
+  - jiwonsudo   # 정지원
+  - Jyebin      # 조예빈
+
+
+# A number of reviewers added to the pull request
+# Set 0 to add all the reviewers (default: 0)
+numberOfReviewers: 0
+# A list of assignees, overrides reviewers if set
+# assignees:
+#   - assigneeA
+
+# A number of assignees to add to the pull request
+# Set to 0 to add all of the assignees.
+# Uses numberOfReviewers if unset.
+# numberOfAssignees: 2
+
+# A list of keywords to be skipped the process that add reviewers if pull requests include it
+# skipKeywords:
+#   - wip
