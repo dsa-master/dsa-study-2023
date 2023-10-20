@@ -20,10 +20,10 @@ public class Main {
         }
     }
 
-    static int N;
-    static int K;
+    static int N; // 수빈이의 위치
+    static int K; // 동생의 위치
     static final int DISTANCE_MAX = 100000;
-    static int[] counter = new int[100001];
+    static int[] counter = new int[100001]; // INDEX : 현재위치, VALUE : 최소이동횟수
 
     static Queue<Integer> q = new LinkedList<>();
 
