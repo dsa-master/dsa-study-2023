@@ -1,28 +1,30 @@
-def dfs(graph, node, visited):
+def repeat(num):
+    str_num = str(num)
+    list_num = list(str_num) #를 리스트로 변환
 
-    visited[node] = True
-    count = 1  # 현재 컴퓨터는 걸렸으므로 1부터
+    repeat_num = 0
 
-    for i in graph[node]:
-        if not visited[i]:
-            count = count + dfs(graph, i, visited)
+    for i in range(len(list_num)): # 리스트 안 중복 요소 검사
+      for j in range(i + 1, len(list_num)):
+            if list_num[i] == list_num[j] :
+              repeat_num = 1
+              break
+    return repeat_num
 
-    return count
 
-com_num = int(input())  # 컴퓨터의 수
-connect_com_num = int(input())  # 네트워크 상에서 직접 연결되어 있는 컴퓨터 쌍의 수
+def no_repeat_maker(N, M): # 숫자가 중복된 번호 개수 뽑아내기
+    c = 0
+    for num in range(N, M + 1):
+        repeat(num)
+        if repeat(num) == 1 :
+          c = c + 1
+    return c
 
-graph = []
-for _ in range(com_num + 1):
-    graph.append([])
 
-for _ in range(connect_com_num): # 연결된 쌍 입력받기
-    x, y = map(int, input().split())
-    graph[x].append(y)
-    graph[y].append(x)
-
-visited = [False for _ in range(com_num + 1)]
-
-result = dfs(graph, 1, visited)
-
-print(result + (- 1))  # 1번 컴퓨터는 이미 걸렸기에 빼주기
+while True:
+    try:
+        N, M = map(int, input().split())
+        result = no_repeat_maker(N, M)
+        print(M - N  + 1 - result) #두 번호 사이의 번호의 갯수 - 중복되는 번호의 갯수
+    except EOFError:
+        break
