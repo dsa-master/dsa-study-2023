@@ -1,5 +1,4 @@
 import collections
-import itertools
 import sys
 
 
@@ -14,6 +13,8 @@ def countCases(adjMat: dict[str, dict[str, int]], source: str, sink: str, *route
     isPossible = True
     ans = 1
 
+    # 인접행렬의 가중치가 크로스워드에 배치할 수 있는 단어의 개수라고 할 때,
+    # 한 번 배치할 때 마다 하나 씩 소모처리 해둠.
     for route in routes:
         isPossible &= adjMat[source][route] > 0
         ans *= adjMat[source][route]
@@ -23,11 +24,12 @@ def countCases(adjMat: dict[str, dict[str, int]], source: str, sink: str, *route
         ans *= adjMat[route][sink]
         adjMat[route][sink] -= 1
 
+    # 소모시켰던 가중치를 복구함으로서 인접행렬은 원상복구.
     for route in routes:
         adjMat[source][route] += 1
         adjMat[route][sink] += 1
 
-    # 두 route가 같으면 경우의 수도 두 배로...
+    # 두 route가 다르면 대칭으로 뒤집어도 가능하니, 경우의 수도 두 배로...
     ans *= len(set(routes))
 
     return ans if isPossible else 0
